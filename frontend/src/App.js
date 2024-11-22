@@ -8,6 +8,8 @@ import {
   toggleCompleteStatus,
 } from "./utils/HandleApi";
 
+import { AnimatePresence } from "framer-motion";
+
 function App() {
   const [toDo, setToDo] = useState([]);
   const [text, setText] = useState("");
@@ -27,7 +29,7 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-        <h1>Projet API - TODO LIST</h1>
+        <h1>Application de gestion des tâches</h1>
         <div className="top">
           <input
             type="text"
@@ -49,18 +51,22 @@ function App() {
           </div>
         </div>
         <div className="list">
-          {toDo.map((item) => (
-            <ToDo
-              key={item._id}
-              text={item.text}
-              completed={item.completed}
-              updateMode={() => updateMode(item._id, item.text)}
-              deleteToDo={() => deleteToDo(item._id, setToDo)}
-              toggleComplete={() =>
-                toggleCompleteStatus(item._id, !item.completed, setToDo)
-              }
-            />
-          ))}
+          <AnimatePresence>
+            {toDo
+              .sort((a, b) => a.completed - b.completed)
+              .map((item) => (
+                <ToDo
+                  key={item._id}
+                  text={item.text}
+                  completed={item.completed}
+                  updateMode={() => updateMode(item._id, item.text)}
+                  deleteToDo={() => deleteToDo(item._id, setToDo)}
+                  toggleComplete={() =>
+                    toggleCompleteStatus(item._id, !item.completed, setToDo)
+                  }
+                />
+              ))}
+          </AnimatePresence>
         </div>
       </div>
     </div>

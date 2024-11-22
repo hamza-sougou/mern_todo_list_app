@@ -34,12 +34,14 @@ h1 {
   outline: none;
   width: 500px;
   padding: 0.5rem;
-  border-bottom: 1px solid #000;
+  border: 2px solid #161616;
+  border-radius: 5px;
 }
 
 .add {
   background-color: #000;
   color: #fff;
+  border-radius: 5px;
   padding: 0.5rem 1.5rem;
   cursor: pointer;
 }
@@ -55,7 +57,7 @@ h1 {
 }
 
 .todo.completed {
-  background-color: #062b16;
+  background-color: #073a1d;
   text-decoration: line-through;
   transition: 0.5s ease;
 }
@@ -72,4 +74,28 @@ h1 {
 .icon {
   cursor: pointer;
   font-size: 20px;
+}
+
+.delete {
+  color: #ff1b1b;
+}
+
+.update {
+  color: #ffb300;
+}
+
+.todo {
+  transition: background-color 0.3s ease;
+}
+
+.todo:nth-child(even) {
+  background-color: #141414; /* Couleur pour les indices pairs */
+}
+
+.todo:nth-child(odd) {
+  background-color: #242424; /* Couleur pour les indices impairs */
+}
+
+.todo.completed {
+  background-color: #073a1d;
 }

@@ -12,10 +12,10 @@ const getAllToDo = (setToDo) => {
 const addToDo = (text, setText, setToDo) => {
   axios
     .post(`${baseUrl}/save`, { text })
-    .then((data) => {
+    .then(({ data }) => {
       console.log(data);
       setText("");
-      getAllToDo(setToDo);
+      setToDo((prevToDo) => [data, ...prevToDo]);
     })
     .catch((err) => console.log(err));
 };
